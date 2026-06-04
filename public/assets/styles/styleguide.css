@@ -1,0 +1,41 @@
+:root {
+  --primary-bg-color: #ffffff;
+  --primary-link-color: #3643ba;
+
+  --vp-spacing-0: 0px;
+  --vp-spacing-100: 8px;
+  --vp-spacing-150: 12px;
+  --vp-spacing-200: 16px;
+  --vp-spacing-250: 20px;
+  --vp-spacing-300: 24px;
+  --vp-spacing-400: 32px;
+  --vp-spacing-500: 40px;
+  --vp-spacing-600: 48px;
+  --vp-spacing-650: 64px;
+  --vp-spacing-700: 80px;
+  --vp-spacing-800: 96px;
+  --vp-spacing-850: 128px;
+  --vp-spacing-900: 160px;
+
+  --vp-font-weight-100: 100;
+  --vp-font-weight-200: 200;
+  --vp-font-weight-300: 300;
+  --vp-font-weight-400: 400;
+  --vp-font-weight-500: 500;
+  --vp-font-weight-600: 600;
+  --vp-font-weight-700: 700;
+  --vp-font-weight-800: 800;
+  --vp-font-weight-900: 900;
+  --vp-font-weight-950: 950;
+
+  --vp-border-radius-0: 0px;
+  --vp-border-radius-100: 4px;
+  --vp-border-radius-200: 8px;
+  --vp-border-radius-300: 12px;
+  --vp-border-radius-400: 16px;
+  --vp-border-radius-500: 20px;
+  --vp-border-radius-600: 28px;
+  --vp-border-radius-full: 999px;
+
+  --primary-footer-bg-color: #3643ba;
+}
