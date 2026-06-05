@@ -39,3 +39,8 @@
 
   --primary-footer-bg-color: #3643ba;
 }
+
+@font-face {
+  font-family: 'Decathlon';
+  src: url('/assets/Decathlon-VF.19016feb.woff2') format('woff2');
+}

@@ -4,9 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buurtcampuskrant</title>
+    <title>Decathlon</title>
     <link rel="stylesheet" href="/styles/style.css">
     <link rel="stylesheet" href="/styles/keyframes.css">
     <link rel="stylesheet" href="/styles/styleguide.css">
     <script src="/client.js" defer></script>
 </head>
+
+<header class="header">
+    <section class="header-container">
+        <div class="header-top">
+            {% render 'partials/header-partials/header-menu-icon.liquid' %}
+            {% render 'partials/header-partials/header-logo.liquid' %}
+            {% render 'partials/header-partials/header-top-actions.liquid' %}
+        </div>
+        {% render 'partials/header-partials/header-search.liquid' %}
+    </section>
+</header>
