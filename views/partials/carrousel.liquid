@@ -1,0 +1,72 @@
+{% comment %}
+  <ul class="carrousel">
+    <li data-label="groen" style="--img: url(https://assets.codepen.io/274456/photo-groen.png)">
+      <img src="https://assets.codepen.io/274456/photo-groen.png" alt="">
+    </li>
+    <li data-label="lime" style="--img: url(https://assets.codepen.io/274456/photo-lime.png)">
+      <img src="https://assets.codepen.io/274456/photo-lime.png" alt="">
+    </li>
+    <li data-label="geel" style="--img: url(https://assets.codepen.io/274456/photo-geel.png)">
+      <img src="https://assets.codepen.io/274456/photo-geel.png" alt="">
+    </li>
+    <li data-label="oker" style="--img: url(https://assets.codepen.io/274456/photo-oker.png)">
+      <img src="https://assets.codepen.io/274456/photo-oker.png" alt="">
+    </li>
+    <li data-label="oranje" style="--img: url(https://assets.codepen.io/274456/photo-oranje.png)">
+      <img src="https://assets.codepen.io/274456/photo-oranje.png" alt="">
+    </li>
+  </ul>
+{% endcomment %}
+
+<section class="product-gallery" aria-label="Productafbeeldingen">
+  <section class="main-section-images">
+    {% assign firstImage = imageUrls[0] %}
+    {% if firstImage %}
+      <figure>
+        <picture>
+          <source
+            type="image/avif"
+            srcset="{{ firstImage }}?fit=cover&format=avif&width=400&quality=80"
+          >
+          <source
+            type="image/webp"
+            srcset="{{ firstImage }}?fit=cover&format=webp&width=400&quality=80"
+          >
+          <img
+            class="product-main-image"
+            src="{{ firstImage }}?fit=cover&width=400&quality=80"
+            alt="{{ product.title }}"
+            id="main-image"
+            loading="lazy"
+          >
+        </picture>
+      </figure>
+    {% endif %}
+  </section>
+
+  <section class="sub-section-images" aria-label="Extra productafbeeldingen">
+    <ul>
+      {% for url in imageUrls offset: 1 %}
+        <li>
+          <a href="{{ url }}" data-full="{{ url }}">
+            <picture>
+              <source
+                type="image/avif"
+                srcset="{{ url }}?fit=cover&format=webp&width=400&quality=80"
+              >
+              <source
+                type="image/webp"
+                srcset="{{ url }}?fit=cover&format=webp&width=400&quality=80"
+              >
+              <img
+                src="{{ url }}?fit=cover&width=400&quality=80"
+                alt="{{ product.title }} afbeelding {{ forloop.index }}"
+                loading="lazy"
+              >
+            </picture>
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+</section>
