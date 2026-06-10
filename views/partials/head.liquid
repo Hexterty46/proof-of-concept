@@ -11,13 +11,10 @@
     <script src="/client.js" defer></script>
 </head>
 
-<header class="header">
-    <section class="header-container">
-        <div class="header-top">
-            {% render 'partials/header-partials/header-menu-icon.liquid' %}
-            {% render 'partials/header-partials/header-logo.liquid' %}
-            {% render 'partials/header-partials/header-top-actions.liquid' %}
-        </div>
-        {% render 'partials/header-partials/header-search.liquid' %}
-    </section>
+<body>
+<header>
+    {% render 'partials/header-partials/header-menu-icon.liquid' %}
+    {% render 'partials/header-partials/header-logo.liquid' %}
+    {% render 'partials/header-partials/header-top-actions.liquid' %}
+    {% render 'partials/header-partials/header-search.liquid' %}
 </header>
