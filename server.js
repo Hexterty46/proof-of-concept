@@ -22,7 +22,35 @@ app.engine("liquid", engine.express())
 app.set("views", "./views")
 
 app.get("/", async function (request, response) {
-  response.render("index.liquid", {})
+  const params = {
+    fields:
+      "sizes.*, brand, specifications.*, description.*, summary, title, features.*, price, images.*",
+  }
+
+  const productResponse = await fetch(
+    "https://fdnd-agency.directus.app/items/decathlon_products?" +
+      new URLSearchParams(params)
+  )
+  const productData = await productResponse.json()
+
+  const reviewsResponse = await fetch(
+    "https://fdnd-agency.directus.app/items/decathlon_reviews"
+  )
+  const reviewsData = await reviewsResponse.json()
+
+  const product = productData.data[0]
+
+
+  const imageUrls = (product.images || []).map((img) => {
+    return `https://fdnd-agency.directus.app/assets/${img.directus_files_id}`
+  })
+
+
+  response.render("index.liquid", {
+    product,
+    imageUrls,
+    reviews: reviewsData.data,
+  })
 })
 
 // Stel het poortnummer in waar Express op moet gaan luisteren
@@ -37,9 +65,8 @@ app.listen(app.get("port"), function () {
   )
 })
 
-
 app.use(function (req, res) {
-  res.status(404).render('404.liquid')
-})
+  res.status(404).render("404.liquid");
+});
 
-console.log("Hier komt je server voor Sprint 12.");
+console.log("Hier komt je server voor Sprint 12.")
