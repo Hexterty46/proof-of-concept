@@ -23,23 +23,29 @@
     {% assign firstImage = imageUrls[0] %}
     {% if firstImage %}
       <figure>
-        <picture>
-          <source
-            type="image/avif"
-            srcset="{{ firstImage }}?fit=cover&format=avif&width=400&quality=80"
-          >
-          <source
-            type="image/webp"
-            srcset="{{ firstImage }}?fit=cover&format=webp&width=400&quality=80"
-          >
-          <img
-            class="product-main-image"
-            src="{{ firstImage }}?fit=cover&width=400&quality=80"
-            alt="{{ product.title }}"
-            id="main-image"
-            loading="lazy"
-          >
-        </picture>
+        <a
+          href="{{ firstImage }}"
+          data-full="{{ firstImage }}"
+          class="product-main-link"
+        >
+          <picture>
+            <source
+              type="image/avif"
+              srcset="{{ firstImage }}?fit=cover&format=avif&width=400&quality=80"
+            >
+            <source
+              type="image/webp"
+              srcset="{{ firstImage }}?fit=cover&format=webp&width=400&quality=80"
+            >
+            <img
+              class="product-main-image"
+              src="{{ firstImage }}?fit=cover&width=400&quality=80"
+              alt="{{ product.title }}"
+              id="main-image"
+              loading="lazy"
+            >
+          </picture>
+        </a>
       </figure>
     {% endif %}
   </section>
@@ -52,7 +58,7 @@
             <picture>
               <source
                 type="image/avif"
-                srcset="{{ url }}?fit=cover&format=webp&width=400&quality=80"
+                srcset="{{ url }}?fit=cover&format=avif&width=400&quality=80"
               >
               <source
                 type="image/webp"
