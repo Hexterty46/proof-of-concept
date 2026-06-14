@@ -21,10 +21,15 @@ app.engine("liquid", engine.express())
 // Let op: de browser kan deze bestanden niet rechtstreeks laden (zoals voorheen met HTML bestanden)
 app.set("views", "./views")
 
+const userReview = {
+  name: 'Semih',
+  rating: 5
+};
+
 app.get("/", async function (request, response) {
   const params = {
     fields:
-      "sizes.*, brand, specifications.*, description.*, summary, title, features.*, price, images.*",
+      "sizes, brand, specifications.*, description.*, summary, title, features.*, price, images.*, id",
   }
 
   const productResponse = await fetch(
@@ -36,20 +41,27 @@ app.get("/", async function (request, response) {
   const reviewsResponse = await fetch(
     "https://fdnd-agency.directus.app/items/decathlon_reviews"
   )
+
+  console.log("REVIEWS STATUS:", reviewsResponse.status) // <-- belangrijk
+
   const reviewsData = await reviewsResponse.json()
+  console.log("REVIEWS RAW DATA:", reviewsData)          // <-- wat komt er echt terug?
+  console.log("REVIEWS ARRAY:", reviewsData.data)        // <-- is dit undefined / leeg?
 
   const product = productData.data[0]
-
 
   const imageUrls = (product.images || []).map((img) => {
     return `https://fdnd-agency.directus.app/assets/${img.directus_files_id}`
   })
 
+  console.log("PRODUCT =", product)
+  console.log("PRODUCT.SIZES =", product.sizes)
 
   response.render("index.liquid", {
     product,
     imageUrls,
     reviews: reviewsData.data,
+    userReview,
   })
 })
 
