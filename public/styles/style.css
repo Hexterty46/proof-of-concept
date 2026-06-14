@@ -32,8 +32,9 @@ header {
       align-items: center;
       gap: 8px;
       padding: 0 0 0 var(--spacing-300);
-      background-color: var(--primary-bg-color);
+      background-color: #f5f4f5;
       border-radius: 2rem;
+      border: none;
       height: 3rem;
       outline: 2px solid transparent;
       transition: outline 0.1s ease-in-out;
@@ -128,6 +129,117 @@ header {
   }
 }
 
+/* brand name styling */
+.product-details {
+  padding-inline: 1rem;
+
+  .brand {
+    font-size: 22px;
+    /* padding-inline: 1rem; */
+    color: #101010;
+    margin-block-end: 8px;
+  }
+
+  .brand-title {
+    /* padding-inline: 1rem; */
+    font-size: 26px;
+    font-weight: var(--font-weight-600);
+    margin-block-end: 12px;
+  }
+
+  .review-section {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-direction: row;
+    margin-block-end: 32px;
+
+    span {
+      /* margin-left: 0.5rem; */
+      font-weight: var(--font-weight-500);
+      font-size: 14px;
+      /* line-height: 1; */
+    }
+
+    .star-reviews {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+
+      /* svg:last-of-type {
+        border-right: 1px solid #000;
+        padding-right: 0.25rem;
+      } */
+    }
+  }
+
+  .product-description {
+    margin-block-end: 8px;
+    font-weight: var(--font-weight-500);
+  }
+
+  .product-id {
+    color: #616161;
+    font-size: 12px;
+    font-weight: var(--font-weight-500);
+    margin-block-end: 32px;
+  }
+}
+
+.product-options {
+  margin-block: 1.5rem;
+  padding-inline: 1rem;
+
+  fieldset {
+    border: 0;
+    margin: 0 0 1rem;
+
+    legend {
+      font-size: 14px;
+      font-weight: var(--font-weight-500);
+    }
+
+    select {
+      padding: 1rem;
+      width: 100%;
+      background-color: #f5f4f5;
+      font-size: 14px;
+      font-weight: var(--font-weight-500);
+      cursor: pointer;
+      border: none;
+    }
+  }
+}
+
+.price {
+  /* padding-inline: 1rem; */
+  display: inline-block;
+  background-color: #ffcd4e;
+  padding-inline: 1rem;
+  width: fit-content;
+  padding-block: 2px 2px;
+  font-size: 22px;
+  font-weight: var(--font-weight-600);
+  margin-block-end: 24px;
+}
+
+.submit-button {
+  background-color: #3643BA;
+  border: none;
+  color: white;
+  padding: 1rem;
+  width: 100%;
+  min-height: 4rem;
+  font-size: 16px;
+  margin-top: 16px;
+  cursor: pointer;
+  text-align: center;
+  border-radius: var(--border-radius-full);
+  font-weight: var(--font-weight-600);
+}
+
+/* Reviews */
+
 /* Footer */
 
 footer {
@@ -137,18 +249,25 @@ footer {
 
   .mobile-footer {
     margin: 0 20px;
-    ul {
+    .items {
       display: flex;
       flex-direction: column;
       gap: 32px;
       li {
         display: flex;
         a {
+          text-decoration: none;
           color: var(--primary-bg-color);
           span:first-of-type {
             font-size: 22px;
             display: flex;
             flex-direction: column;
+            font-weight: var(--font-weight-600);
+          }
+
+          &:hover,
+          &:active {
+            text-decoration: underline;
           }
         }
       }
@@ -156,6 +275,31 @@ footer {
 
     .loyality-links {
       margin-block-start: 64px;
+
+      ul {
+        display: flex;
+        flex-direction: column;
+        font-weight: var(--font-weight-600);
+
+        li {
+          display: flex;
+
+          a {
+            text-decoration: none;
+            color: var(--primary-bg-color);
+            span:first-of-type {
+              font-size: 22px;
+              display: flex;
+              flex-direction: column;
+            }
+
+            &:hover,
+            &:active {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
     }
 
     .footer-socials {
@@ -170,7 +314,7 @@ footer {
         li {
           a {
             svg {
-              border: 1px solid white;
+              border: 1px solid var(--primary-bg-color);
               border-radius: 50%;
             }
           }
@@ -180,9 +324,30 @@ footer {
 
     nav {
       margin-block-start: 24px;
+      margin-block-end: 64px;
       details {
+        ul {
+          display: flex;
+          flex-direction: column;
+          list-style: none;
+          gap: 1rem;
+          font-weight: var(--font-weight-500);
+          li {
+            a {
+              color: var(--primary-bg-color);
+              text-decoration: none;
+
+              &:hover,
+              &:active {
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+
         summary {
           font-size: 22px;
+          font-weight: var(--font-weight-600);
         }
       }
     }
