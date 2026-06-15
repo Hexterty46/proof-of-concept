@@ -20,7 +20,7 @@
 
 <section class="product-gallery" aria-label="Productafbeeldingen">
   <section class="main-section-images">
-    {% assign firstImage = imageUrls[0] %}
+    {% assign firstImage = imageUrls[1] %}
     {% if firstImage %}
       <figure>
         <a
@@ -52,7 +52,7 @@
 
   <section class="sub-section-images" aria-label="Extra productafbeeldingen">
     <ul>
-      {% for url in imageUrls offset: 1 %}
+      {% for url in imageUrls reversed offset: 1 %}
         <li>
           <a href="{{ url }}" data-full="{{ url }}">
             <picture>
