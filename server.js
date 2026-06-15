@@ -42,11 +42,11 @@ app.get("/", async function (request, response) {
     "https://fdnd-agency.directus.app/items/decathlon_reviews"
   )
 
-  console.log("REVIEWS STATUS:", reviewsResponse.status) // <-- belangrijk
+  console.log("Status reviews:", reviewsResponse.status)
 
   const reviewsData = await reviewsResponse.json()
-  console.log("REVIEWS RAW DATA:", reviewsData)          // <-- wat komt er echt terug?
-  console.log("REVIEWS ARRAY:", reviewsData.data)        // <-- is dit undefined / leeg?
+  console.log("reviews data:", reviewsData)
+  console.log("reviews array:", reviewsData.data)
 
   const product = productData.data[0]
 
@@ -54,8 +54,8 @@ app.get("/", async function (request, response) {
     return `https://fdnd-agency.directus.app/assets/${img.directus_files_id}`
   })
 
-  console.log("PRODUCT =", product)
-  console.log("PRODUCT.SIZES =", product.sizes)
+  console.log("product =", product)
+  console.log("product.sizes =", product.sizes)
 
   response.render("index.liquid", {
     product,
