@@ -215,7 +215,7 @@ header {
   /* padding-inline: 1rem; */
   display: inline-block;
   background-color: #ffcd4e;
-  padding-inline: 1rem;
+  padding-inline: .2rem;
   width: fit-content;
   padding-block: 2px 2px;
   font-size: 22px;
