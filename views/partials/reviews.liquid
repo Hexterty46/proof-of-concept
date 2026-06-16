@@ -1,5 +1,167 @@
 {% comment %} POST interactie {% endcomment %}
+<section class="reviews" aria-labelledby="reviews-heading">
+  <h2 id="reviews-heading">Reviews</h2>
 
+  <p class="reviews-summary">
+    <span class="reviews-average">{{ averageRating }}</span>
+    <span>out of 5</span>
+    <span class="reviews-count">({{ reviewCount }} reviews)</span>
+  </p>
+
+  <form class="add-review-section" method="POST" action="/reviews">
+    <input
+      type="text"
+      name="title"
+      class="review-input"
+      placeholder="Title..."
+      required
+    >
+
+    <textarea
+      name="description"
+      class="review-input-description"
+      placeholder="Description..."
+      required
+    ></textarea>
+
+    <div class="criteria-rating-list">
+      <div class="criteria-rating-row">
+        <span class="criteria-label">Grip</span>
+        <div class="star-rating" role="radiogroup" aria-label="Grip rating">
+          {% for i in (1..5) reversed %}
+            <input
+              type="radio"
+              id="grip-{{ i }}"
+              name="grip"
+              value="{{ i }}"
+              required
+            >
+            <label
+              for="grip-{{ i }}"
+              class="star"
+              aria-label="{{ i }} star{% if i != 1 %}s{% endif %}"
+            >
+              ★
+            </label>
+          {% endfor %}
+        </div>
+      </div>
+
+      {% comment %} Foot support sectie {% endcomment %}
+      <div class="criteria-rating-row">
+        <span class="criteria-label">Foot support</span>
+        <div class="star-rating" role="radiogroup" aria-label="Foot support rating">
+          {% for i in (1..5) reversed %}
+            <input
+              type="radio"
+              id="foot-support-{{ i }}"
+              name="foot_support"
+              value="{{ i }}"
+              required
+            >
+            <label
+              for="foot-support-{{ i }}"
+              class="star"
+              aria-label="{{ i }} star{% if i != 1 %}s{% endif %}"
+            >
+              ★
+            </label>
+          {% endfor %}
+        </div>
+      </div>
+
+      {% comment %} Lightweight sectie {% endcomment %}
+      <div class="criteria-rating-row">
+        <span class="criteria-label">Lightweight</span>
+        <div class="star-rating" role="radiogroup" aria-label="Lightweight rating">
+          {% for i in (1..5) reversed %}
+            <input
+              type="radio"
+              id="lightweight-{{ i }}"
+              name="lightweight"
+              value="{{ i }}"
+              required
+            >
+            <label
+              for="lightweight-{{ i }}"
+              class="star"
+              aria-label="{{ i }} star{% if i != 1 %}s{% endif %}"
+            >
+              ★
+            </label>
+          {% endfor %}
+        </div>
+      </div>
+
+     {% comment %} Value for money sectie {% endcomment %}
+      <div class="criteria-rating-row">
+        <span class="criteria-label">Value for money</span>
+        <div class="star-rating" role="radiogroup" aria-label="Value for money rating">
+          {% for i in (1..5) reversed %}
+            <input
+              type="radio"
+              id="value-for-money-{{ i }}"
+              name="value_for_money"
+              value="{{ i }}"
+              required
+            >
+            <label
+              for="value-for-money-{{ i }}"
+              class="star"
+              aria-label="{{ i }} star{% if i != 1 %}s{% endif %}"
+            >
+              ★
+            </label>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="criteria-rating-row">
+        <span class="criteria-label">Look / design</span>
+        <div class="star-rating" role="radiogroup" aria-label="Look and design rating">
+          {% for i in (1..5) reversed %}
+            <input
+              type="radio"
+              id="look-design-{{ i }}"
+              name="look_design"
+              value="{{ i }}"
+              required
+            >
+            <label
+              for="look-design-{{ i }}"
+              class="star"
+              aria-label="{{ i }} star{% if i != 1 %}s{% endif %}"
+            >
+              ★
+            </label>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <h3>Overall rating:</h3>
+    <div class="star-rating" role="radiogroup" aria-label="Overall rating">
+      {% for i in (1..5) reversed %}
+        <input
+          type="radio"
+          id="rating-{{ i }}"
+          name="rating"
+          value="{{ i }}"
+          required
+        >
+        <label
+          for="rating-{{ i }}"
+          class="star"
+          aria-label="{{ i }} star{% if i != 1 %}s{% endif %}"
+        >
+          ★
+        </label>
+      {% endfor %}
+    </div>
+
+    <button class="submit-review-button" type="submit">Submit</button>
+  </form>
+</section>
 
 {% comment %} GET voor de reviews {% endcomment %}
 <section class="customer-reviews">
@@ -15,12 +177,28 @@
       <h3 class="review-title">{{ review.title }}</h3>
       <p class="review-description">{{ review.description }}</p>
 
+      {% if review.attributes %}
+        <div class="review-attributes-list">
+          {% for attribute in review.attributes %}
+            <div class="review-attribute-row">
+              <span class="criteria">{{ attribute.criteria }}</span>
+              <span class="criteria-stars">
+                {% for i in (1..attribute.score) %}
+                  ★
+                {% endfor %}
+                <span class="criteria-score">{{ attribute.score }}/5</span>
+              </span>
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+
       <p class="review-meta">
         {{ review.name }}
         {% if review.location %}
-            {{ review.location }}
+          {{ review.location }}
         {% endif %}
-        | {{ review.created_at }}
+        | {{ review.created_at | relative_time  }}
         {% if review.verified_buyer %}
           | Verified buyer
         {% endif %}
