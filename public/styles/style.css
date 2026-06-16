@@ -30,10 +30,10 @@ header {
       position: relative;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: var(--spacing-100);
       padding: 0 0 0 var(--spacing-300);
       background-color: #f5f4f5;
-      border-radius: 2rem;
+      border-radius: var(--border-radius-700);
       border: none;
       height: 3rem;
       outline: 2px solid transparent;
@@ -79,7 +79,7 @@ header {
 .product-gallery {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-150, 1rem);
+  gap: var(--spacing-150, --spacing-200);
   margin: 1rem;
 
   .main-section-images {
@@ -131,20 +131,20 @@ header {
 
 /* brand name styling */
 .product-details {
-  padding-inline: 1rem;
+  padding-inline: var(--spacing-200);
 
   .brand {
     font-size: 22px;
     /* padding-inline: 1rem; */
     color: #101010;
-    margin-block-end: 8px;
+    margin-block-end: var(--spacing-100);
   }
 
   .brand-title {
     /* padding-inline: 1rem; */
     font-size: 26px;
     font-weight: var(--font-weight-600);
-    margin-block-end: 12px;
+    margin-block-end: var(--spacing-150);
   }
 
   .review-section {
@@ -152,7 +152,7 @@ header {
     align-items: center;
     gap: 0.5rem;
     flex-direction: row;
-    margin-block-end: 32px;
+    margin-block-end: var(--spacing-400);
 
     span {
       /* margin-left: 0.5rem; */
@@ -174,7 +174,7 @@ header {
   }
 
   .product-description {
-    margin-block-end: 8px;
+    margin-block-end: var(--spacing-100);
     font-weight: var(--font-weight-500);
   }
 
@@ -187,12 +187,12 @@ header {
 }
 
 .product-options {
-  margin-block: 1.5rem;
-  padding-inline: 1rem;
+  margin-block: var(--spacing-300);
+  padding-inline: var(--spacing-200);
 
   fieldset {
     border: 0;
-    margin: 0 0 1rem;
+    margin: 0 0 var(--spacing-200);
 
     legend {
       font-size: 14px;
@@ -249,7 +249,7 @@ header {
 /* Reviews */
 
 .reviews {
-  margin-inline: 1rem;
+  margin-inline: var(--spacing-200);
 
   .criteria-rating-list {
     display: flex;
@@ -365,7 +365,7 @@ header {
     }
 
     .criteria {
-      color: #777777;
+      color: #67666b;
       text-transform: lowercase;
     }
   }
@@ -373,7 +373,7 @@ header {
   .review-meta {
     margin-top: 0.5rem;
     font-size: 0.8rem;
-    color: #777777;
+    color: #67666b;
   }
 }
 
