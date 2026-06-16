@@ -15,6 +15,34 @@ app.use(express.static("public"))
 
 // Stel Liquid in als 'view engine'
 const engine = new Liquid()
+
+engine.registerFilter('relative_time', function (iso) {
+  if (!iso) return '';
+  // Directus may return datetimes without a timezone offset.
+  // Treat bare ISO datetimes as UTC so 'just now' works correctly for recent posts.
+  var normIso = iso;
+  if (/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}$/.test(iso)) {
+    normIso = iso + 'Z';
+  }
+  var date = new Date(normIso);
+  if (isNaN(date)) return iso;
+  var now = new Date();
+  var diffMs = now - date;
+  var diffMin = Math.floor(diffMs / 60000);
+  if (diffMin < 1) return 'just now';
+  if (diffMin < 60) return diffMin + 'min ago';
+  var diffH = Math.floor(diffMin / 60);
+  if (diffH < 24) return diffH + 'h ago';
+  var diffD = Math.floor(diffH / 24);
+  if (diffD < 7) return diffD + 'd ago';
+  var diffW = Math.floor(diffD / 7);
+  if (diffW < 4) return diffW + 'w ago';
+  var diffM = Math.floor(diffD / 30);
+  if (diffM < 12) return diffM + 'm ago';
+  var diffY = Math.floor(diffD / 365);
+  return diffY + 'y ago';
+})
+
 app.engine("liquid", engine.express())
 
 // Stel de map met Liquid templates in
@@ -23,8 +51,9 @@ app.set("views", "./views")
 
 const userReview = {
   name: 'Semih',
-  rating: 5
-};
+  rating: 5,
+  id: 31
+}
 
 app.get("/", async function (request, response) {
   const params = {
@@ -42,11 +71,11 @@ app.get("/", async function (request, response) {
     "https://fdnd-agency.directus.app/items/decathlon_reviews"
   )
 
-  console.log("Status reviews:", reviewsResponse.status)
+  // console.log("Status reviews:", reviewsResponse.status)
 
   const reviewsData = await reviewsResponse.json()
-  console.log("reviews data:", reviewsData)
-  console.log("reviews array:", reviewsData.data)
+  // console.log("reviews data:", reviewsData)
+  // console.log("reviews array:", reviewsData.data)
 
   const product = productData.data[0]
 
@@ -54,8 +83,8 @@ app.get("/", async function (request, response) {
     return `https://fdnd-agency.directus.app/assets/${img.directus_files_id}`
   })
 
-  console.log("product =", product)
-  console.log("product.sizes =", product.sizes)
+  // console.log("product =", product)
+  // console.log("product.sizes =", product.sizes)
 
   response.render("index.liquid", {
     product,
@@ -63,6 +92,65 @@ app.get("/", async function (request, response) {
     reviews: reviewsData.data,
     userReview,
   })
+})
+
+app.post("/reviews", async function (req, res) {
+  try {
+    const {
+      title,
+      description,
+      grip,
+      foot_support,
+      lightweight,
+      value_for_money,
+      look_design,
+      rating,
+      name,
+      location,
+    } = req.body
+
+    const attributes = [
+      { criteria: "Grip",           score: Number(grip) },
+      { criteria: "Foot support",   score: Number(foot_support) },
+      { criteria: "Lightweight",    score: Number(lightweight) },
+      { criteria: "Value for money",score: Number(value_for_money) },
+      { criteria: "Look / design",  score: Number(look_design) },
+    ]
+
+    const newReview = {
+      title,
+      description,
+      rating: Number(rating),
+      attributes,
+      verified_buyer: false,
+      name: userReview.name,
+      location: location || null,
+      product: 8974697,
+    }
+
+    console.log("nieuwe review:", newReview)
+
+    const responseDirectus = await fetch(
+      "https://fdnd-agency.directus.app/items/decathlon_reviews",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newReview),
+      }
+    )
+
+    if (!responseDirectus.ok) {
+      console.error("Directus fout:", await responseDirectus.text())
+      return res.status(500).send("Review opslaan mislukt")
+    }
+
+    res.redirect("/#reviews")
+  } catch (error) {
+    console.error(error)
+    res.status(500).send("Serverfout bij het opslaan van de review")
+  }
 })
 
 // Stel het poortnummer in waar Express op moet gaan luisteren
