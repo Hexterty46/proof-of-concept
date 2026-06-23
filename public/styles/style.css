@@ -51,8 +51,53 @@ header {
     svg {
       position: absolute;
       left: 1.5rem;
-      top: .9rem;
+      top: 0.9rem;
       transform: translateX(-50%);
+    }
+  }
+
+  .menu {
+    z-index: 10;
+    background-color: white;
+    width: min(85vw, 22rem);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    translate: -102%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    interactivity: inert;
+
+    @media (prefers-reduced-motion: no-preference) {
+      transition: 0.3s ease;
+    }
+
+    .menu-close {
+      align-self: flex-end;
+      padding: 1rem 1rem 0 0;
+    }
+
+    ul {
+      li {
+        list-style-type: none;
+
+        a {
+          display: flex;
+          color: black;
+          font-size: 1.1rem;
+          font-weight: var(--font-weight-600);
+          text-decoration: none;
+          font-weight: bold;
+          padding: 1rem;
+        }
+      }
+    }
+
+    &:target,
+    &.is-open {
+      translate: 0;
+      interactivity: auto;
     }
   }
 
@@ -263,7 +308,7 @@ header {
 
   .add-review-section {
     .review-input {
-      padding: .5rem;
+      padding: 0.5rem;
       border: none;
       background-color: #f5f4f5;
       border-radius: var(--border-radius-300);
@@ -334,7 +379,7 @@ header {
   .star-rating {
     display: inline-flex;
     flex-direction: row-reverse;
-    gap: .25rem;
+    gap: 0.25rem;
 
     input[type="radio"] {
       position: absolute;
@@ -372,7 +417,6 @@ header {
     display: flex;
     justify-content: center;
   }
-
 }
 
 .customer-reviews {
@@ -545,14 +589,13 @@ footer {
 
           &:after {
             content: "";
-            width: .3rem;
-            height: .3rem;
+            width: 0.3rem;
+            height: 0.3rem;
             border-right: 2px solid white;
             border-bottom: 2px solid white;
             transform: rotate(45deg);
-            transition: transform .25s ease;
+            transition: transform 0.25s ease;
           }
-
         }
         ul {
           display: flex;
@@ -561,7 +604,7 @@ footer {
           gap: 1rem;
           font-weight: var(--font-weight-500);
           padding: 0 0 1rem;
-          margin-left: .5rem;
+          margin-left: 0.5rem;
           li {
             a {
               color: var(--primary-bg-color);
