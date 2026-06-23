@@ -9,10 +9,12 @@
     <link rel="stylesheet" href="/styles/keyframes.css">
     <link rel="stylesheet" href="/styles/styleguide.css">
     <script src="/client.js" defer></script>
+    <script src="/script.js" defer></script>
 </head>
 
 <body>
 <header>
+    {% render 'partials/header-partials/header-menu.liquid' %}
     {% render 'partials/header-partials/header-menu-icon.liquid' %}
     {% render 'partials/header-partials/header-logo.liquid' %}
     {% render 'partials/header-partials/header-top-actions.liquid' %}
