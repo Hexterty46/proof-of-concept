@@ -45,12 +45,47 @@ https://github.com/user-attachments/assets/5224d56a-403c-48c9-b3bb-e4ec5adfc609
 De pagina is opgebouwd met behulp van semantische HTML-elementen zoals `header`, `body`, `footer` `main`. `nav`, `section`. Ook is er gebruik gemaakt van, partials om de HTML in stukjes te delen voor een betere inzicht op je code.
 https://github.com/Hexterty46/proof-of-concept/blob/a6be8e759e434ab451f6b1bfc7e90671a59ca918/views/index.liquid#L4
 
-### CSS
+## CSS
+Met CSS word gebruik gemaakt van custom properties. Hierdoor blijft de styling consistent en onderhoudbaar. Ook word er rekening gehouden met toegankelijkheid.
+
+https://github.com/Hexterty46/proof-of-concept/blob/5dc3e45ae90f20bb42f647e43bd85e614ec8bbc9/public/styles/style.css#L10
+
+https://github.com/Hexterty46/proof-of-concept/blob/5dc3e45ae90f20bb42f647e43bd85e614ec8bbc9/public/styles/style.css#L72-L74
+
+## Progressive Enhancement
+Op de pagina is op 2 plekken progressive enhancement toegepast, op de carrousel en op de meun knop links boven
+<img width="39" height="42" alt="image" src="https://github.com/user-attachments/assets/0364265b-5316-47cc-863b-5c42a482d523" />
+<img width="387" height="474" alt="image" src="https://github.com/user-attachments/assets/5e44f78c-072a-48d2-98d6-1e9bec35cccb" />
+
+Met client side javascript zorg ik ervoor, dat de menu altijd geopend, en gesloten kan worden. Met of zonder javascript.
+
+https://github.com/user-attachments/assets/da73f84f-969e-45eb-9754-40e49c1e7ee8
+
+https://github.com/Hexterty46/proof-of-concept/blob/5dc3e45ae90f20bb42f647e43bd85e614ec8bbc9/public/script.js#L1-L17
+
+Op de carrousel zorg ik ervoor dat de afbeeldingen die onder de hoofd afbeelding staan, als hoofdafbeelding geselecteerd kan worden.
+
+<img width="348" height="465" alt="image" src="https://github.com/user-attachments/assets/015b34c1-514a-4b40-bc2c-e5084aef12cf" />
+
+https://github.com/user-attachments/assets/acf4b43d-aa82-4501-9a34-b28eb11f2c4f
+
+Door javascript uit te schakelen kunnen de producten nog steeds bekeken worden. Als je op een van de foto's klikt, word je naar een andere pagina geleidt om de foto's in detail te bekijken
+
+https://github.com/Hexterty46/proof-of-concept/blob/5dc3e45ae90f20bb42f647e43bd85e614ec8bbc9/public/client.js#L1-L59
 
 
 
 ## Installatie
 <!-- Bij Instalatie staat hoe een andere developer aan jouw repo kan werken -->
+- installeer npm
+- Clone de repository
+- Open de folder in VSCodium
+- Open de terminal en vul in:
+1. npm install
+2. npm start
+
+Ga naar localhost:8000 in je browser om het live te bekijken
+
 
 ## Bronnen
 
