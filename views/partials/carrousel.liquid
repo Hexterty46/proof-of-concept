@@ -1,5 +1,5 @@
 <section class="product-gallery" aria-label="Productafbeeldingen">
-  <section class="main-section-images">
+  <div class="main-section-images">
     {% assign firstImage = imageUrls[1] %}
     {% if firstImage %}
       <figure>
@@ -27,9 +27,9 @@
         </a>
       </figure>
     {% endif %}
-  </section>
+  </div>
 
-  <section class="sub-section-images" aria-label="Extra productafbeeldingen">
+  <div class="sub-section-images">
     <ul>
       {% for url in imageUrls reversed offset: 1 %}
         <li>
@@ -53,5 +53,5 @@
         </li>
       {% endfor %}
     </ul>
-  </section>
+  </div>
 </section>

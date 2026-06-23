@@ -100,23 +100,20 @@ header {
       interactivity: auto;
     }
   }
-
   .header-actions {
-    nav {
+    display: flex;
+    flex-direction: row;
+
+    ul {
+      list-style: none;
       display: flex;
-      flex-direction: row;
+      gap: var(--spacing-200);
 
-      ul {
-        list-style: none;
-        display: flex;
-        gap: var(--spacing-200);
+      .desktop-navigation {
+        display: none;
 
-        .desktop-navigation {
-          display: none;
-
-          @media (min-width: 768px) {
-            display: flex;
-          }
+        @media (min-width: 768px) {
+          display: flex;
         }
       }
     }

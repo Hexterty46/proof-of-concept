@@ -11,18 +11,23 @@
     <section class="review-section">
       <div class="star-reviews">
         <svg width="16" height="16" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <title>1 star</title>
           <path d="M3.8042 0L4.70226 2.76393H7.60843L5.25728 4.47214L6.15534 7.23607L3.8042 5.52786L1.45306 7.23607L2.35111 4.47214L-2.69413e-05 2.76393H2.90614L3.8042 0Z" fill="black"></path>
         </svg>
         <svg width="16" height="16" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <title>2 star</title>
           <path d="M3.8042 0L4.70226 2.76393H7.60843L5.25728 4.47214L6.15534 7.23607L3.8042 5.52786L1.45306 7.23607L2.35111 4.47214L-2.69413e-05 2.76393H2.90614L3.8042 0Z" fill="black"></path>
         </svg>
         <svg width="16" height="16" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <title>3 star</title>
           <path d="M3.8042 0L4.70226 2.76393H7.60843L5.25728 4.47214L6.15534 7.23607L3.8042 5.52786L1.45306 7.23607L2.35111 4.47214L-2.69413e-05 2.76393H2.90614L3.8042 0Z" fill="black"></path>
         </svg>
         <svg width="16" height="16" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <title>4 star</title>
           <path d="M3.8042 0L4.70226 2.76393H7.60843L5.25728 4.47214L6.15534 7.23607L3.8042 5.52786L1.45306 7.23607L2.35111 4.47214L-2.69413e-05 2.76393H2.90614L3.8042 0Z" fill="black"></path>
         </svg>
         <svg width="16" height="16" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <title>5 star</title>
           <path d="M3.8042 0L4.70226 2.76393H7.60843L5.25728 4.47214L6.15534 7.23607L3.8042 5.52786L1.45306 7.23607L2.35111 4.47214L-2.69413e-05 2.76393H2.90614L3.8042 0Z" fill="black"></path>
         </svg>
       </div>
@@ -34,34 +39,36 @@
     <p class="product-id">ID: {{ product.id }}</p>
   </section>
 
-  <section class="product-options">
-    <fieldset>
-      <legend>Size</legend>
+  <form method="POST">
+    <section class="product-options">
+      <fieldset>
+        <legend>Size</legend>
 
-      <select
-        id="product-size"
-        name="size"
-        required
-      >
-        <option value="" disabled selected hidden>Select</option>
-        {% for sizeItem in product.sizes %}
-          <option
-            value="{{ sizeItem.size }}"
-            {% if not sizeItem.available %}
-              disabled
-            {% endif %}
-          >
-            EU {{ sizeItem.size -}}
-            {%- if not sizeItem.available %} - not available{% endif %}
-          </option>
-        {% endfor %}
-      </select>
-    </fieldset>
+        <select
+          id="product-size"
+          name="size"
+          required
+        >
+          <option value="" disabled selected hidden>Select</option>
+          {% for sizeItem in product.sizes %}
+            <option
+              value="{{ sizeItem.size }}"
+              {% if not sizeItem.available %}
+                disabled
+              {% endif %}
+            >
+              EU {{ sizeItem.size -}}
+              {%- if not sizeItem.available %} - not available{% endif %}
+            </option>
+          {% endfor %}
+        </select>
+      </fieldset>
       <p class="price">€ {{ product.price }}</p>
       <button class="submit-button" type="submit">Add to basket</button>
-  </section>
+    </section>
+  </form>
 
-  {% render 'partials/reviews.liquid' reviews: reviews %}
+  {% render 'partials/reviews.liquid', reviews: reviews %}
 </main>
 
 {% render 'partials/foot.liquid' %}

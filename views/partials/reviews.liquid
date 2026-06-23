@@ -93,7 +93,7 @@
         </div>
       </div>
 
-     {% comment %} Value for money sectie {% endcomment %}
+      {% comment %} Value for money sectie {% endcomment %}
       <div class="criteria-rating-row">
         <span class="criteria-label">Value for money</span>
         <div class="star-rating" role="radiogroup" aria-label="Value for money rating">
@@ -164,14 +164,19 @@
 </section>
 
 {% comment %} GET voor de reviews {% endcomment %}
-<section class="customer-reviews">
+<section class="customer-reviews" aria-label="Customer reviews">
   {% for review in reviews reversed %}
     <article class="review">
       <div class="review-rating">
-        {% for i in (1..review.rating) %}
-          ★
-        {% endfor %}
-        <span class="review-rating-number">{{ review.rating }}/5</span>
+        <meter hidden min="0" max="5" value="{{ review.rating }}">{{ review.rating }}/5</meter>
+
+        <div class="stars" aria-hidden="true">
+          {% for i in (1..review.rating) %}
+            ★
+          {% endfor %}
+        </div>
+
+        <span class="review-rating-number"> {{ review.rating }}/5 </span>
       </div>
 
       <h3 class="review-title">{{ review.title }}</h3>
@@ -198,7 +203,7 @@
         {% if review.location %}
           {{ review.location }}
         {% endif %}
-        | {{ review.created_at | relative_time  }}
+        | {{ review.created_at | relative_time }}
         {% if review.verified_buyer %}
           | Verified buyer
         {% endif %}
