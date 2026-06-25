@@ -53,4 +53,5 @@
 @font-face {
   font-family: "Decathlon";
   src: url("/assets/Decathlon-VF.19016feb.woff2") format("woff2");
+  font-display: swap;
 }
